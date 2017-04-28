@@ -19,7 +19,7 @@ public class ShowController {
         model.put("time",new Date());
         model.put("message","first");
 
-        return "home";
+        return "index";
     }
 
 }
