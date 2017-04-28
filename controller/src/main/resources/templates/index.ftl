@@ -11,6 +11,8 @@
         .news .news-title {overflow:hidden;position:relative;}
         .news #showOrHide {position:absolute; top:50%; right:10px;}
         #center_9 {
+
+
             background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
             border: medium none;
             height: 46px;
