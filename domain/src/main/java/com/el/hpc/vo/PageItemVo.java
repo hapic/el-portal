@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @Setter
 @Getter
-public class PageItem implements Serializable {
+public class PageItemVo implements Serializable {
 
     private Land land;
     private Map<Group,List<LocatorItem>> groupListMap;
