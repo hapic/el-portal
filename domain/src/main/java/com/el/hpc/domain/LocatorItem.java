@@ -23,5 +23,7 @@ public class LocatorItem implements Serializable {
     private String isNew;
     private String host;
 
+    private String groupId;
+
 
 }
