@@ -15,7 +15,7 @@ public class LocatorItemService {
     @Autowired
     private LocatorItemDao locatorItemDao;
 
-    public void insert(LocatorItem item){
+    public void addLocatorItem(LocatorItem item){
         locatorItemDao.insert(item);
     }
 
