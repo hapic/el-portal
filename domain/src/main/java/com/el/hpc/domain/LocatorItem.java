@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Created by ShenQi on 17/4/28.
+ * 一个链接的实体类
  */
 @Setter
 @Getter

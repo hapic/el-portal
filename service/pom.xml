@@ -11,5 +11,19 @@
 
     <artifactId>service</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.el.hpc</groupId>
+            <artifactId>domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.el.hpc</groupId>
+            <artifactId>dao</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
