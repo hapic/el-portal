@@ -5,6 +5,8 @@ import com.el.hpc.domain.Land;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by ShenQi on 17/5/7.
  */
@@ -14,7 +16,11 @@ public class LandService {
     @Autowired
     private LandDao landDao;
 
-    private void addLand(Land land){
+    public void addLand(Land land){
         this.landDao.insert(land);
+    }
+
+    public List<Land> loadAllLand(){
+        return this.landDao.findAll();
     }
 }

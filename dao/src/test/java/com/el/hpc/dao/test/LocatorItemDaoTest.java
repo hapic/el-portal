@@ -12,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Example;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.data.mongodb.repository.support.SimpleMongoRepository;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,8 +29,8 @@ import java.util.UUID;
 @RunWith(SpringJUnit4ClassRunner.class)
 //这是Spring Boot注解，为了进行集成测试，需要通过这个注解加载和配置Spring应用上下
 @SpringBootTest
-@SpringBootApplication(scanBasePackages = {"com.el.hpc"})
-@EnableMongoRepositories(basePackages = "com.el.hpc.dao")
+//@SpringBootApplication(scanBasePackages = {"com.el.hpc"})
+//@EnableMongoRepositories(basePackages = "com.el.hpc.dao")
 public class LocatorItemDaoTest {
 
     @Autowired
@@ -43,6 +45,13 @@ public class LocatorItemDaoTest {
 
     @Autowired
     private GroupDao groupDao;
+
+    @Test
+    public void testFindByLandId(){
+        List<Group> byLandId = this.groupDao.findByLandId("7798048a-0985-45e8-ada0-aa46ff4bc3e9");
+        System.out.println(byLandId);
+
+    }
 
     @Test
     public void testSave(){

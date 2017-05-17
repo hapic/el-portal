@@ -3,6 +3,7 @@ package com.el.hpc.domain;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,5 +19,8 @@ public class Land implements Serializable {
     @Id
     private String id;
     private String name;
+
+    @Transient
+    private boolean currentPage;
 
 }

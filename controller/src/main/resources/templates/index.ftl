@@ -28,13 +28,10 @@
         <a href="http://www.eloancn.com" class="logo" id="logo_123"></a>
     </div>
     <div style="margin-top: 10px; float: left;">
-        <a href="test.html">
-            <span style="  font-size: 30px;">测试环境</span>
-        </a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="index.ftl">
-            <span style="color: red;  font-size: 30px;">生产环境</span>
-        </a>
+    <#list data.lands as land>
+        ${land.currentPage}
+
+    </#list>
 
     </div>
 

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.helpers.LocatorImpl;
 
+import java.util.List;
+
 /**
  * Created by ShenQi on 17/4/29.
  */
@@ -17,6 +19,10 @@ public class LocatorItemService {
 
     public void addLocatorItem(LocatorItem item){
         locatorItemDao.insert(item);
+    }
+
+    public List<LocatorItem> findAllLocatorItemByGroupId(String groupId){
+        return this.locatorItemDao.findByGroupId(groupId);
     }
 
 
