@@ -7,6 +7,6 @@ import org.springframework.stereotype.Controller;
  * 数据相关的管理
  *“”
  */
-@Controller("data")
+@Controller("manager")
 public class CacheDataController {
 }
