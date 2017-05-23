@@ -13,7 +13,7 @@
 <!--[if IE 7]>
 		  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-
+    <link rel="stylesheet" href="assets/css/chosen.css" />
 
 
 <link rel="stylesheet" href="/assets/css/ace.min.css" />
@@ -62,11 +62,11 @@ try{ace.settings.check('main-container' , 'fixed')}catch(e){}
       
       
       <ul class="nav nav-list">
-        <li class="active"> <a href="index.html"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
+        <li class="active"> <a href="/manager"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
 
         <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 中间件 </span> <b class="arrow icon-angle-down"></b> </a>
           <ul class="submenu">
-            <li> <a href="elements.html"> <i class="icon-double-angle-right"></i> 组件 </a> </li>
+            <li> <a href="javascript:loadPage('/manager/redis/page')"> <i class="icon-double-angle-right"></i> Redis查询 </a> </li>
             <li> <a href="buttons.html"> <i class="icon-double-angle-right"></i> 按钮 &amp; 图表 </a> </li>
             <li> <a href="treeview.html"> <i class="icon-double-angle-right"></i> 树菜单 </a> </li>
             <li> <a href="jquery-ui.html"> <i class="icon-double-angle-right"></i> jQuery UI </a> </li>
@@ -105,12 +105,10 @@ try{ace.settings.check('main-container' , 'fixed')}catch(e){}
           <li class="active">控制台</li>
         </ul>
       </div>
-      <div class="page-content">
-        
-       
-        
-        
+      <div class="page-content" id="page-content">
+
       </div>
+
     </div>
   </div>
  </div>
@@ -148,14 +146,34 @@ if("ontouchend" in document) document.write("<script src='/assets/js/jquery.mobi
 <script src="/assets/js/jquery.sparkline.min.js"></script> 
 <script src="/assets/js/flot/jquery.flot.min.js"></script> 
 <script src="/assets/js/flot/jquery.flot.pie.min.js"></script> 
-<script src="/assets/js/flot/jquery.flot.resize.min.js"></script> 
+<script src="/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+    <script src="assets/js/chosen.jquery.min.js"></script>
+    <script src="assets/js/fuelux/fuelux.spinner.min.js"></script>
 
 <!-- ace scripts --> 
 
 <script src="/assets/js/ace-elements.min.js"></script> 
 <script src="/assets/js/ace.min.js"></script> 
 
-<!-- inline scripts related to this page --> 
+<!-- inline scripts related to this page -->
+
 
 </body>
+<script type="application/javascript">
+    jQuery(function($) {
+        $(".chosen-select").chosen();
+    });
+
+    function loadPage(pageUrl) {
+        $.ajax({
+            url:pageUrl,
+            success:function(result){
+            $("#page-content").html(result);
+        }});
+
+    }
+
+
+</script>
 </html>

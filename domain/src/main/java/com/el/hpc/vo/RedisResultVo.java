@@ -1,13 +1,9 @@
-package com.el.hpc.controller.manager;
+package com.el.hpc.vo;
 
-import com.el.hpc.service.IRedisService;
-import com.el.hpc.service.RedisService;
-import com.el.hpc.vo.RedisResultVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -33,36 +29,19 @@ import org.springframework.web.servlet.ModelAndView;
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
  *
  * @User : Hapic
- * @Date : 2017/5/23 13:21
- * 操作redis的Controller
+ * @Date : 2017/5/23 16:27
+ * 查询redis的结果信息
  */
-@Controller
-@RequestMapping("/manager/redis")
-public class RedisController {
-
-
-    @Autowired
-    private IRedisService redisService;
-
-    @RequestMapping("page")
-    public ModelAndView page() {
-        return new ModelAndView("manager/redis");
-    }
-
-    @RequestMapping("do")
-    @ResponseBody
-    public RedisResultVo doCmd(RedisResultVo vo){
-        long begin = System.currentTimeMillis();
-        if("get".equals(vo.getCmd())){
-            long end = System.currentTimeMillis();
-            String value = redisService.get(vo, null);
-            vo.setValue(value);
-            vo.setWasteTime((int)(end-begin));
-       }
-
-        return vo;
-    }
-
-
+@Setter
+@Getter
+public class RedisResultVo implements Serializable {
+    private String ip;
+    private String port;
+    private String db;
+    private String cmd;
+    private String key;
+    private String field;
+    private String value;
+    private int wasteTime;
 
 }

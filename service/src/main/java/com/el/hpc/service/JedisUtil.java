@@ -1,6 +1,7 @@
-package com.el.hpc.controller.page;
+package com.el.hpc.service;
 
-import org.springframework.stereotype.Controller;
+import com.el.hpc.vo.RedisResultVo;
+import redis.clients.jedis.Jedis;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -26,11 +27,18 @@ import org.springframework.stereotype.Controller;
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
  *
  * @User : Hapic
- * @Date : 2017/5/23 13:21
- * 操作redis的Controller
+ * @Date : 2017/5/23 16:50
+ * jedis的工具类
  */
-@Controller
-public class RedisController {
+public class JedisUtil {
 
-
+    public static Jedis borrowJedis(RedisResultVo vo){
+        String ip = vo.getIp();
+        String port = vo.getPort();
+        String cmd = vo.getCmd();
+        String db = vo.getDb();
+        Jedis jedis= new Jedis(ip,Integer.parseInt(port));
+        jedis.select(Integer.parseInt(db));
+        return jedis;
+    }
 }
