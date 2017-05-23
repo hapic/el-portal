@@ -57,4 +57,10 @@ public class ShowController {
         return new ModelAndView("index","data",model);
     }
 
+
+    @RequestMapping("/manger")
+    public ModelAndView manger() {
+        return new ModelAndView("manager/index");
+    }
+
 }
