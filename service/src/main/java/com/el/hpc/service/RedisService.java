@@ -10,6 +10,7 @@ import redis.clients.jedis.Jedis;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -39,11 +40,10 @@ import java.lang.reflect.Proxy;
  * redis的查询借口
  */
 @Service
-public class RedisService implements InvocationHandler,IRedisService {
+public class RedisService  {
 
 
 
-    @Override
     public String get(RedisResultVo vo,Jedis jedis){
         return jedis.get(vo.getKey());
     }
@@ -56,8 +56,25 @@ public class RedisService implements InvocationHandler,IRedisService {
         return jedis.exists(vo.getKey()).toString();
     }
 
+    public String type(RedisResultVo vo,Jedis jedis){
+        return jedis.type(vo.getKey()).toString();
+    }
 
-    @Override
+    public String set(RedisResultVo vo, Jedis jedis) {
+        return jedis.set(vo.getKey(),vo.getValueStr());
+    }
+
+    public List<String> hmget(RedisResultVo vo, Jedis jedis) {
+        String[] fields = vo.getField().split(",");
+        return jedis.hmget(vo.getKey(), fields);
+    }
+
+    public Long hset(RedisResultVo vo,Jedis jedis){
+        return jedis.hset(vo.getKey(), vo.getField(), vo.getValueStr());
+    }
+
+
+    /*@Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if ((args == null) || (args.length <= 0)) {
             return null;
@@ -97,5 +114,5 @@ public class RedisService implements InvocationHandler,IRedisService {
 
 
 
-    }
+    }*/
 }

@@ -13,12 +13,15 @@
 <!--[if IE 7]>
 		  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-    <link rel="stylesheet" href="assets/css/chosen.css" />
+
 
 
 <link rel="stylesheet" href="/assets/css/ace.min.css" />
 <link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+
+    <link rel="stylesheet" href="assets/css/chosen.css" />
+
 
 <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
@@ -106,7 +109,135 @@ try{ace.settings.check('main-container' , 'fixed')}catch(e){}
         </ul>
       </div>
       <div class="page-content" id="page-content">
+          <div class="row">
+              <div class="col-sm-5">
+                  <div class="widget-box">
+                      <div class="widget-header">
+                          <h4>Redis服务</h4>
+                      </div>
 
+                      <div class="widget-body">
+                          <div class="widget-main no-padding">
+                              <form class="form-horizontal">
+
+                                  <fieldset>
+                                      <!--ip地址-->
+                                      <div class="form-group">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-ip"> IP </label>
+
+                                          <div class="col-sm-9">
+                                              <input type="text" value="192.168.2.16" id="form-field-ip" placeholder="ip" class="col-xs-10 col-sm-7" />
+                                          </div>
+
+                                      </div>
+                                      <!--端口地址-->
+                                      <div class="form-group">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-port"> Port </label>
+
+                                          <div class="col-sm-9">
+                                              <input type="text" value="6379" id="form-field-port" placeholder="port" class="col-xs-10 col-sm-7" />
+                                          </div>
+                                      </div>
+                                      <!--DB索引库-->
+                                      <div class="form-group">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-db"> DB </label>
+
+                                          <div class="col-sm-9">
+                                              <input type="text" value="0" id="form-field-db" placeholder="DB" class="col-xs-10 col-sm-7" />
+                                          </div>
+                                      </div>
+
+                                      <!--命令-->
+                                      <div class="form-group">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-select-cmd"> cmd </label>
+
+                                          <div class="col-sm-9">
+                                              <select class="width-55 chosen-select" id="form-field-select-cmd" data-placeholder="输入查询的命令">
+
+
+                                                  <option value="ttl">ttl</option>
+
+                                                  <option value="exists">exists</option>
+                                                  <option value="type">type</option>
+
+                                                  <option value="get">get</option>
+                                                  <option value="set">set</option>
+
+                                                  <option value="llen">llen</option>
+
+                                                  <option value="hget">hget</option>
+                                                  <option value="hset">hset</option>
+                                                  <option value="hlen">hlen</option>
+
+
+                                                  <option value="zrange">zrange</option>
+
+                                              </select>
+                                          </div>
+                                      </div>
+
+                                      <!--key-->
+                                      <div class="form-group">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-key"> Key </label>
+
+                                          <div class="col-sm-9">
+                                              <input type="text" value="aa" id="form-field-key" placeholder="Key" class="col-xs-10 col-sm-7" />
+                                          </div>
+                                      </div>
+                                      <div class="form-group" id="other-div-field" style="display:none;">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-field"> field </label>
+
+                                          <div class="col-sm-9">
+                                              <input type="text" value="field" id="form-field-field" placeholder="field" class="col-xs-10 col-sm-7" />
+
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group" id="other-div-value" style="display:none;">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-value"> value </label>
+
+                                          <div class="col-sm-6">
+                                              <textarea class="form-control" id="form-field-value" placeholder="value" value="value"></textarea>
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group" id="other-div-range" style="display:none;">
+                                          <label class="col-sm-3 control-label no-padding-right"> 区间 </label>
+                                          <div class="col-sm-5">
+                                              <input type="text" class="input-small" placeholder="start" id="start" />-
+                                              <input type="text" class="input-small" placeholder="end" id="end"/>
+
+                                          </div>
+
+                                      </div>
+
+
+
+                                  </fieldset>
+
+                                  <div class="form-actions center">
+                                      <button id="form-actions-submit" type="button" class="btn btn-sm btn-success">
+                                          提交
+                                          <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                      </button>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div id="selectResultBox" class="col-sm-6" style="display: none">
+                  <div class="well">
+                      <h4 class="green smaller lighter">查询结果: </h4>
+                      <div id="selectResultDiv">
+
+                      </div>
+                  </div>
+                  <div class="well well-sm"> 耗时:<span id="wasteTime"></span> </div>
+              </div>
+
+          </div>
       </div>
 
     </div>
@@ -148,31 +279,37 @@ if("ontouchend" in document) document.write("<script src='/assets/js/jquery.mobi
 <script src="/assets/js/flot/jquery.flot.pie.min.js"></script> 
 <script src="/assets/js/flot/jquery.flot.resize.min.js"></script>
 
-    <script src="assets/js/chosen.jquery.min.js"></script>
-    <script src="assets/js/fuelux/fuelux.spinner.min.js"></script>
 
 <!-- ace scripts --> 
 
 <script src="/assets/js/ace-elements.min.js"></script> 
-<script src="/assets/js/ace.min.js"></script> 
+<script src="/assets/js/ace.min.js"></script>
+
 
 <!-- inline scripts related to this page -->
 
-
 </body>
+
+
 <script type="application/javascript">
-    jQuery(function($) {
-        $(".chosen-select").chosen();
+
+    $.each( $("div[id^='other-div']"), function(i, n){
+        $(n).hide();
+        $(n).val('');
     });
 
     function loadPage(pageUrl) {
+
         $.ajax({
             url:pageUrl,
+            dataType:'html',
             success:function(result){
             $("#page-content").html(result);
         }});
-
     }
+
+
+
 
 
 </script>

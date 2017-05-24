@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by ShenQi on 17/5/23.
  */
-@Aspect
-@Configuration
+
 public class TestAop {
 
 
@@ -19,7 +18,7 @@ public class TestAop {
         System.out.println("TestAop.excudeService");
     }
 
-    @Around(value = "execution(* com.el.hpc.service.LandService.*(..))")
+//    @Around(value = "execution(* com.el.hpc.service.LandService.*(..))")
     public Object twiceAsOld(ProceedingJoinPoint thisJoinPoint){
 
         System.err.println ("切面执行了。。。。");

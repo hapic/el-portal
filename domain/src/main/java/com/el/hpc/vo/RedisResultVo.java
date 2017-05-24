@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -41,7 +43,17 @@ public class RedisResultVo implements Serializable {
     private String cmd;
     private String key;
     private String field;
-    private String value;
+    private String valueStr;
+    private int start;
+    private int end;
+    private Map<String,String> map=new HashMap<String, String>();
     private int wasteTime;
+
+    public void addValue(String value){
+        map.put(value,value);
+    }
+    public void addValue(String field,String value){
+        map.put(field,value);
+    }
 
 }
