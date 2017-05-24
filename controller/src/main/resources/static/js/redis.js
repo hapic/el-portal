@@ -20,7 +20,10 @@ function bindsubmitClick() {
                 $("#selectResultBox").show();
                 var content='';
                 for(var key in result.map){
-                    content+=key+"<br/>";
+
+                    if(key!='-'){
+                        content+=key+"<br/>";
+                    }
                     content+=result.map[key]+"<div class='space-6'></div>"
                 }
 
@@ -60,6 +63,10 @@ function selectCmdChange() {
             $("#other-div-zrange").show();
             break;
         }
+        case 'sismember':{
+            $("#other-div-field").show();
+            break;
+        }
     }
 }
 
@@ -93,12 +100,25 @@ function appendData(data) {
 
             data['field']=$("#form-field-field").val();
 
-            data['start']=$("#form-field-star").val();
+            data['start']=$("#form-field-start").val();
+            if(!data['start']){
+                data['start']=0;
+            }
 
             data['end']=$("#form-field-end").val();
+            if(!data['end']){
+                data['end']=1;
+            }
+
 
             break;
         }
+        case 'sismember':{
+
+        data['field']=$("#form-field-field").val();
+
+        break;
+    }
     }
 
     return data;

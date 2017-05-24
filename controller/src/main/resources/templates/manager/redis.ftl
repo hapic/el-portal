@@ -78,6 +78,7 @@
 
 
                                             <option value="zrange">zrange</option>
+                                            <option value="sismember">sismember</option>
 
                                         </select>
                                     </div>
@@ -108,7 +109,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group" id="other-div-range" style="display:none;">
+                                <div class="form-group" id="other-div-zrange" style="display:none;">
                                     <label class="col-sm-3 control-label no-padding-right"> 区间 </label>
                                     <div class="col-sm-5">
                                         <input type="text" class="input-small" placeholder="start" id="form-field-start" />-

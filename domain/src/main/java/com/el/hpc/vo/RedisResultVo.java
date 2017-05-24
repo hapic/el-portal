@@ -2,6 +2,7 @@ package com.el.hpc.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ import java.util.Map;
  */
 @Setter
 @Getter
+@ToString
 public class RedisResultVo implements Serializable {
     private String ip;
     private String port;
@@ -50,7 +52,7 @@ public class RedisResultVo implements Serializable {
     private int wasteTime;
 
     public void addValue(String value){
-        map.put(value,value);
+        map.put("-",value);
     }
     public void addValue(String field,String value){
         map.put(field,value);

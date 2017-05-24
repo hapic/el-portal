@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import redis.clients.jedis.Tuple;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -96,17 +98,73 @@ public class RedisController {
 
             vo.addValue(type);
         }else if("hget".equals(vo.getCmd())){
+            String type = redisService.type(vo, null);
+            if(!"hash".equals(type)){
+                vo.addValue("类型不一致");
+                return vo;
+            }
+
             List<String> hmget = redisService.hmget(vo, null);
             String field = vo.getField();
             String[] fields = field.split(",");
 
-            for(int i=0;i<fields.length;i++){
+            for(int i=0;i<fields.length && i<hmget.size();i++){
                 vo.addValue("Field: "+fields[i],"Value: "+hmget.get(i));
             }
         }else if("hset".equals(vo.getCmd())){
+            String type = redisService.type(vo, null);
+            if(!"hash".equals(type)){
+                vo.addValue("类型不一致");
+                return vo;
+            }
+
             Long hset = redisService.hset(vo, null);
+            String result="";
+            if("1".equals(hset)){
+                result="设置成功!";
+            }else if("2".equals(hset)){
+                result="覆盖成功!";
+            }else
+                result="失败!";
+            vo.addValue(result);
+        }else if("hlen".equals(vo.getCmd())){
+            String type = redisService.type(vo, null);
+            if(!"hash".equals(type)){
+                vo.addValue("类型不一致");
+                return vo;
+            }
+            Long hset = redisService.hlen(vo, null);
+            vo.addValue(hset+"");
+        }else if("llen".equals(vo.getCmd())){
+            String type = redisService.type(vo, null);
+            if(!"list".equals(type)){
+                vo.addValue("类型不一致");
+                return vo;
+            }
 
+            Long hset = redisService.llen(vo, null);
+            vo.addValue(hset+"");
+        }else if("zrange".equals(vo.getCmd())){
+            String type = redisService.type(vo, null);
+            if(!"zset".equals(type)){
+                vo.addValue("类型不一致");
+                return vo;
+            }
 
+            Set<Tuple> zrange = redisService.zrange(vo, null);
+            for(Tuple tuple :zrange){
+                vo.addValue("Value: "+tuple.getElement(),"Scores: "+tuple.getScore());
+            }
+        }else if("sismember".equals(vo.getCmd())){
+            String type = redisService.type(vo, null);
+            if(!"set".equals(type)){
+                vo.addValue("类型不一致");
+                return vo;
+            }
+
+            boolean sismember = redisService.sismember(vo, null);
+
+            vo.addValue(sismember+"");
         }
 
         return vo;

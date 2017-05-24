@@ -6,11 +6,14 @@ import com.el.hpc.vo.RedisResultVo;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Client;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Tuple;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -66,11 +69,43 @@ public class RedisService  {
 
     public List<String> hmget(RedisResultVo vo, Jedis jedis) {
         String[] fields = vo.getField().split(",");
-        return jedis.hmget(vo.getKey(), fields);
+
+        List<String> list= new ArrayList<String>();
+
+        if(fields.length<=1){
+
+
+            String hget = jedis.hget(vo.getKey(), vo.getField());
+            list.add(hget);
+            return  list;
+        }
+        try {
+            List<String> hmget = jedis.hmget(vo.getKey(), fields);
+            list.addAll(hmget);
+        } catch (Exception e) {
+            e.printStackTrace();
+            list.add(e.getMessage());
+        }
+        return list;
     }
 
     public Long hset(RedisResultVo vo,Jedis jedis){
         return jedis.hset(vo.getKey(), vo.getField(), vo.getValueStr());
+    }
+
+    public Long hlen(RedisResultVo vo,Jedis jedis){
+        return jedis.hlen(vo.getKey());
+    }
+    public Long llen(RedisResultVo vo,Jedis jedis){
+        return jedis.llen(vo.getKey());
+    }
+
+    public Set<Tuple> zrange(RedisResultVo vo,Jedis jedis){
+        return jedis.zrangeWithScores(vo.getKey(), vo.getStart(), vo.getEnd());
+    }
+
+    public boolean sismember(RedisResultVo vo,Jedis jedis){
+        return jedis.sismember(vo.getKey(),vo.getField());
     }
 
 
