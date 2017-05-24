@@ -28,13 +28,10 @@ import redis.clients.jedis.BinaryClient;
  * @User : Hapic
  * @Date : 2017/5/23 17:42
  */
-public class RedisCmd extends BinaryClient {
+public class RedisCmd  {
     private String ip;
     private int port;
 
-    public RedisCmd(String host, int port) {
-        super(host, port);
-    }
 
 
 

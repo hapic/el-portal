@@ -70,30 +70,8 @@ try{ace.settings.check('main-container' , 'fixed')}catch(e){}
         <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 中间件 </span> <b class="arrow icon-angle-down"></b> </a>
           <ul class="submenu">
             <li> <a href="javascript:loadPage('/manager/redis/page')"> <i class="icon-double-angle-right"></i> Redis查询 </a> </li>
-            <li> <a href="buttons.html"> <i class="icon-double-angle-right"></i> 按钮 &amp; 图表 </a> </li>
-            <li> <a href="treeview.html"> <i class="icon-double-angle-right"></i> 树菜单 </a> </li>
-            <li> <a href="jquery-ui.html"> <i class="icon-double-angle-right"></i> jQuery UI </a> </li>
-            <li> <a href="nestable-list.html"> <i class="icon-double-angle-right"></i> 可拖拽列表 </a> </li>
-            <li> <a href="#" class="dropdown-toggle"> <i class="icon-double-angle-right"></i> 三级菜单 <b class="arrow icon-angle-down"></b> </a>
-              <ul class="submenu">
-                <li> <a href="#"> <i class="icon-leaf"></i> 第一级 </a> </li>
-                <li> <a href="#" class="dropdown-toggle"> <i class="icon-pencil"></i> 第四级 <b class="arrow icon-angle-down"></b> </a>
-                  <ul class="submenu">
-                    <li> <a href="#"> <i class="icon-plus"></i> 添加产品 </a> </li>
-                    <li> <a href="#"> <i class="icon-eye-open"></i> 查看商品 </a> </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
           </ul>
         </li>
-        <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 表格 </span> <b class="arrow icon-angle-down"></b> </a>
-          <ul class="submenu">
-            <li> <a href="tables.html"> <i class="icon-double-angle-right"></i> 简单 &amp; 动态 </a> </li>
-            <li> <a href="jqgrid.html"> <i class="icon-double-angle-right"></i> jqGrid plugin </a> </li>
-          </ul>
-        </li>
-
       </ul>
       <!-- /.nav-list -->
       
@@ -109,135 +87,7 @@ try{ace.settings.check('main-container' , 'fixed')}catch(e){}
         </ul>
       </div>
       <div class="page-content" id="page-content">
-          <div class="row">
-              <div class="col-sm-5">
-                  <div class="widget-box">
-                      <div class="widget-header">
-                          <h4>Redis服务</h4>
-                      </div>
 
-                      <div class="widget-body">
-                          <div class="widget-main no-padding">
-                              <form class="form-horizontal">
-
-                                  <fieldset>
-                                      <!--ip地址-->
-                                      <div class="form-group">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-ip"> IP </label>
-
-                                          <div class="col-sm-9">
-                                              <input type="text" value="192.168.2.16" id="form-field-ip" placeholder="ip" class="col-xs-10 col-sm-7" />
-                                          </div>
-
-                                      </div>
-                                      <!--端口地址-->
-                                      <div class="form-group">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-port"> Port </label>
-
-                                          <div class="col-sm-9">
-                                              <input type="text" value="6379" id="form-field-port" placeholder="port" class="col-xs-10 col-sm-7" />
-                                          </div>
-                                      </div>
-                                      <!--DB索引库-->
-                                      <div class="form-group">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-db"> DB </label>
-
-                                          <div class="col-sm-9">
-                                              <input type="text" value="0" id="form-field-db" placeholder="DB" class="col-xs-10 col-sm-7" />
-                                          </div>
-                                      </div>
-
-                                      <!--命令-->
-                                      <div class="form-group">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-select-cmd"> cmd </label>
-
-                                          <div class="col-sm-9">
-                                              <select class="width-55 chosen-select" id="form-field-select-cmd" data-placeholder="输入查询的命令">
-
-
-                                                  <option value="ttl">ttl</option>
-
-                                                  <option value="exists">exists</option>
-                                                  <option value="type">type</option>
-
-                                                  <option value="get">get</option>
-                                                  <option value="set">set</option>
-
-                                                  <option value="llen">llen</option>
-
-                                                  <option value="hget">hget</option>
-                                                  <option value="hset">hset</option>
-                                                  <option value="hlen">hlen</option>
-
-
-                                                  <option value="zrange">zrange</option>
-
-                                              </select>
-                                          </div>
-                                      </div>
-
-                                      <!--key-->
-                                      <div class="form-group">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-key"> Key </label>
-
-                                          <div class="col-sm-9">
-                                              <input type="text" value="aa" id="form-field-key" placeholder="Key" class="col-xs-10 col-sm-7" />
-                                          </div>
-                                      </div>
-                                      <div class="form-group" id="other-div-field" style="display:none;">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-field"> field </label>
-
-                                          <div class="col-sm-9">
-                                              <input type="text" value="field" id="form-field-field" placeholder="field" class="col-xs-10 col-sm-7" />
-
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group" id="other-div-value" style="display:none;">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-value"> value </label>
-
-                                          <div class="col-sm-6">
-                                              <textarea class="form-control" id="form-field-value" placeholder="value" value="value"></textarea>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group" id="other-div-range" style="display:none;">
-                                          <label class="col-sm-3 control-label no-padding-right"> 区间 </label>
-                                          <div class="col-sm-5">
-                                              <input type="text" class="input-small" placeholder="start" id="start" />-
-                                              <input type="text" class="input-small" placeholder="end" id="end"/>
-
-                                          </div>
-
-                                      </div>
-
-
-
-                                  </fieldset>
-
-                                  <div class="form-actions center">
-                                      <button id="form-actions-submit" type="button" class="btn btn-sm btn-success">
-                                          提交
-                                          <i class="icon-arrow-right icon-on-right bigger-110"></i>
-                                      </button>
-                                  </div>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div id="selectResultBox" class="col-sm-6" style="display: none">
-                  <div class="well">
-                      <h4 class="green smaller lighter">查询结果: </h4>
-                      <div id="selectResultDiv">
-
-                      </div>
-                  </div>
-                  <div class="well well-sm"> 耗时:<span id="wasteTime"></span> </div>
-              </div>
-
-          </div>
       </div>
 
     </div>

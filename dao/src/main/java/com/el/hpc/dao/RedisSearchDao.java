@@ -31,7 +31,6 @@ import redis.clients.jedis.Connection;
  * @Date : 2017/5/23 16:35
  * Redis查询的dao
  */
-@Component
 public class RedisSearchDao  {
 
     public void sendCmd(RedisResultVo vo){

@@ -69,7 +69,7 @@ public class RedisController {
             if("-2".equals(ttl)){
                 ttl="key不存在";
             }else if("-1".equals(ttl)){
-                ttl="没有设置过去时间";
+                ttl="没有设置过期时间";
             }
             vo.addValue(ttl);
         }else if("exists".equals(vo.getCmd())){

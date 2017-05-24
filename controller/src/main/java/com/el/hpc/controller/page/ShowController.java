@@ -58,7 +58,7 @@ public class ShowController {
     }
 
 
-    @RequestMapping("manger")
+    @RequestMapping("manager")
     public ModelAndView manger() {
         return new ModelAndView("manager/index");
     }
