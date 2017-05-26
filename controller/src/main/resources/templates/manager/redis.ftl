@@ -33,7 +33,7 @@
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-ip"> IP </label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" value="192.168.2.16" id="form-field-ip" placeholder="ip" class="col-xs-10 col-sm-7" />
+                                        <input type="text" value="10.1.114.107" id="form-field-ip" placeholder="ip" class="col-xs-10 col-sm-7" />
                                     </div>
 
                                 </div>
@@ -42,7 +42,7 @@
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-port"> Port </label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" value="6380" id="form-field-port" placeholder="port" class="col-xs-10 col-sm-7" />
+                                        <input type="text" value="16379" id="form-field-port" placeholder="port" class="col-xs-10 col-sm-7" />
                                     </div>
                                 </div>
                                 <!--DB索引库-->

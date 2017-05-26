@@ -45,8 +45,19 @@ public class RedisService  {
 
 
 
-    public String get(RedisResultVo vo,Jedis jedis){
-        return jedis.get(vo.getKey());
+    public List<String> get(RedisResultVo vo,Jedis jedis){
+        List<String> valuesList=new ArrayList<>();
+
+        String key = vo.getKey();
+        String[] split = key.split(",");
+
+        if(split.length>1){
+            List<String> mget = jedis.mget(split);
+            valuesList.addAll(mget);
+        }
+        String s = jedis.get(vo.getKey());
+        valuesList.add(s);
+        return valuesList;
     }
 
     public String ttl(RedisResultVo vo,Jedis jedis){

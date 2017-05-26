@@ -59,11 +59,18 @@ public class RedisController {
     @ResponseBody
     public RedisResultVo doCmd(RedisResultVo vo){
         if("get".equals(vo.getCmd())){
-            String value = redisService.get(vo, null);
-            if(value==null){
+            String value;
+            List<String> strings = redisService.get(vo, null);
+            if(strings.size()<1){
                 value="查询不到";
             }
-            vo.addValue("Key: "+vo.getKey(),"Value: "+value);
+            String key = vo.getKey();
+            String[] split = key.split(",");
+
+            for(int i=0;i<split.length;i++){
+                vo.addValue("Key: "+split[i],"Value: "+strings.get(i));
+            }
+
 
         }else if("ttl".equals(vo.getCmd())){
             String ttl = redisService.ttl(vo, null);

@@ -75,6 +75,10 @@ function bindtextClick() {
                     $("#form-actions-submit").addClass('btn-success');
                     content="test success!";
                     bindsubmitClick();
+                }else{
+                    $("#form-actions-submit").unbind("click");
+                    $("#form-actions-submit").attr('disabled',"disabled");
+                    $("#form-actions-submit").removeClass('btn-success');
                 }
 
                 $("#selectResultDiv").html(content);
@@ -183,7 +187,7 @@ function appendData(data) {
                 data['cursor']=0;
             }
             if(!numReg.test(count)){
-                $("#form-field-count").val(100);
+                $("#form-field-count").val(20);
                 data['count']=100;
             }
 
