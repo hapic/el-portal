@@ -68,12 +68,12 @@
                                             <option value="type">type</option>
 
                                             <option value="get">get</option>
-                                            <option value="set">set</option>
+                                            <#--<option value="set">set</option>-->
 
                                             <option value="llen">llen</option>
 
                                             <option value="hget">hget</option>
-                                            <option value="hset">hset</option>
+                                            <#--<option value="hset">hset</option>-->
                                             <option value="hlen">hlen</option>
 
 

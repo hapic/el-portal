@@ -2,8 +2,6 @@ package com.el.hpc.aop;
 
 import com.el.hpc.service.JedisUtil;
 import com.el.hpc.vo.RedisResultVo;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -39,7 +37,6 @@ import redis.clients.jedis.Jedis;
  */
 @Aspect
 @Configuration
-@Log4j
 public class RedisServiceAop {
 
     @Around(value = "execution(* com.el.hpc.service.RedisService.*(..))")

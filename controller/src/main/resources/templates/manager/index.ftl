@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>EL Portal</title>
+<title>ELOANCN</title>
 <meta name="keywords" content="EL-portal" />
 <meta name="description" content="EL-portal" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,7 +47,7 @@
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
   <div class="navbar-container" id="navbar-container">
-    <div class="navbar-header pull-left"> <a href="#" class="navbar-brand"> <small> <i class="icon-leaf"></i> EL PORTAL 管理系统 </small> </a><!-- /.brand --> 
+    <div class="navbar-header pull-left"> <a href="#" class="navbar-brand"> <small> <i class="icon-leaf"></i> ELOANCN </small> </a><!-- /.brand -->
     </div>
     <!-- /.navbar-header -->
     

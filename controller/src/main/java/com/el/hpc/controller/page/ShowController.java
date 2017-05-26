@@ -34,6 +34,7 @@ public class ShowController {
     @RequestMapping("/")
     public ModelAndView home(Map<String, Object> model) {
 
+
         List<Land> lands = landService.loadAllLand();
 
         String thisLandId=null;
