@@ -33,9 +33,9 @@ public class ShowController {
 
     @RequestMapping("/")
     public ModelAndView home(Map<String, Object> model) {
+        return new ModelAndView("redirect:/manager");
 
-
-        List<Land> lands = landService.loadAllLand();
+        /*List<Land> lands = landService.loadAllLand();
 
         String thisLandId=null;
         if(lands!=null && !lands.isEmpty()){
@@ -55,7 +55,7 @@ public class ShowController {
         model.put("lands", lands);
         model.put("groupList", "groupList");
 
-        return new ModelAndView("index","data",model);
+        return new ModelAndView("index","data",model);*/
     }
 
 

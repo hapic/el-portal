@@ -86,7 +86,7 @@ public class RedisController {
             }
             vo.addValue(type);
         }else if("set".equals(vo.getCmd())){
-            String type=null;
+            /*String type=null;
             if(vo.getValueStr()==null || vo.getValueStr().equals("")){
 
             }else {
@@ -94,9 +94,9 @@ public class RedisController {
             }
             if(type==null){
                 type="不存在";
-            }
+            }*/
 
-            vo.addValue(type);
+            vo.addValue("暂不支持");
         }else if("hget".equals(vo.getCmd())){
             String type = redisService.type(vo, null);
             if(!"hash".equals(type)){
@@ -112,7 +112,7 @@ public class RedisController {
                 vo.addValue("Field: "+fields[i],"Value: "+hmget.get(i));
             }
         }else if("hset".equals(vo.getCmd())){
-            String type = redisService.type(vo, null);
+            /*String type = redisService.type(vo, null);
             if(!"hash".equals(type)){
                 vo.addValue("类型不一致");
                 return vo;
@@ -126,7 +126,8 @@ public class RedisController {
                 result="覆盖成功!";
             }else
                 result="失败!";
-            vo.addValue(result);
+            vo.addValue(result);*/
+            vo.addValue("暂不支持");
         }else if("hlen".equals(vo.getCmd())){
             String type = redisService.type(vo, null);
             if(!"hash".equals(type)){
