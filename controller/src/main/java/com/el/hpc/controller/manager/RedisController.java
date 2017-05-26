@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.Tuple;
 
 import java.util.ArrayList;
@@ -166,6 +167,29 @@ public class RedisController {
             boolean sismember = redisService.sismember(vo, null);
 
             vo.addValue(sismember+"");
+        }else if("scan".equals(vo.getCmd())){
+            long start = System.currentTimeMillis();
+            List<String> keys= new ArrayList<>();
+            String nextCursor="";
+            while (!"0".equals(nextCursor) && vo.size()<vo.getCount()){
+                nextCursor=redisService.scan(vo, null);
+                vo.setCursor(Integer.parseInt(nextCursor));
+            }
+
+            long end = System.currentTimeMillis();
+
+            vo.setWasteTime((int) (end-start));
+
+            if(!"0".equals(nextCursor)){
+                vo.addValue("nextCursor",nextCursor);
+            }
+            if(vo.size()<1){
+                vo.addValue("查无结果!","-");
+            }
+
+        }else if("ping".equals(vo.getCmd())){
+            String result=redisService.ping(vo, null);
+            vo.addValue(result);
         }
 
         return vo;

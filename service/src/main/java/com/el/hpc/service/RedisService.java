@@ -4,9 +4,7 @@ import com.el.hpc.dao.RedisCmd;
 import com.el.hpc.templet.RedisCmdTemplet;
 import com.el.hpc.vo.RedisResultVo;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.Client;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Tuple;
+import redis.clients.jedis.*;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -106,6 +104,25 @@ public class RedisService  {
 
     public boolean sismember(RedisResultVo vo,Jedis jedis){
         return jedis.sismember(vo.getKey(),vo.getField());
+    }
+
+    public String scan(RedisResultVo vo, Jedis jedis) {
+        ScanParams params= new ScanParams();
+        params.match(vo.getKey());
+        params.count(vo.getCount());
+        ScanResult<String> scan = jedis.scan(vo.getCursor() + "", params);
+        String stringCursor = scan.getStringCursor();
+        List<String> result = scan.getResult();
+        for(String key :result){
+            vo.addValue(key,"-");
+        }
+
+        return stringCursor;
+
+    }
+
+    public String ping(RedisResultVo vo,Jedis jedis){
+        return jedis.ping();
     }
 
 

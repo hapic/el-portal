@@ -79,6 +79,7 @@
 
                                             <option value="zrange">zrange</option>
                                             <option value="sismember">sismember</option>
+                                            <option value="scan">scan</option>
 
                                         </select>
                                     </div>
@@ -111,12 +112,20 @@
 
                                 <div class="form-group" id="other-div-zrange" style="display:none;">
                                     <label class="col-sm-3 control-label no-padding-right"> 区间 </label>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-7">
                                         <input type="text" class="input-small" placeholder="start" id="form-field-start" />-
                                         <input type="text" class="input-small" placeholder="end" id="form-field-end"/>
 
                                     </div>
 
+                                </div>
+                                <div class="form-group" id="other-div-scan" style="display:none;">
+                                    <label class="col-sm-3 control-label no-padding-right"> 游标-个数 </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="input-small" placeholder="cursor" id="form-field-cursor" />-
+                                        <input type="text" class="input-small" placeholder="count" id="form-field-count"/>
+
+                                    </div>
                                 </div>
 
 
@@ -124,9 +133,13 @@
                             </fieldset>
 
                             <div class="form-actions center">
-                                <button id="form-actions-submit" type="button" class="btn btn-sm btn-success">
-                                    提交
+                                <button id="form-actions-text" type="button" class="btn btn-sm btn-success">
+                                    测试连接
                                     <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                </button>
+                                <button id="form-actions-submit" type="button" disabled class="btn btn-sm">
+                                    提交
+                                    <i class="icon-ok icon-on-right bigger-110"></i>
                                 </button>
                             </div>
                         </form>
@@ -138,6 +151,7 @@
         <div id="selectResultBox" class="col-sm-6" style="display: none">
             <div class="well">
                 <h4 class="green smaller lighter">查询结果: </h4>
+                <span class="text-warning bigger-110 orange" style="display:none;" id="selectResultSpan"></span>
                 <div id="selectResultDiv">
 
                 </div>
@@ -154,6 +168,7 @@
         $(".chosen-select").chosen();
         $('#form-field-select-cmd').change(selectCmdChange);
     });
-    bindsubmitClick();
+
+    bindtextClick();
 </script>
 </html>

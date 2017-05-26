@@ -48,6 +48,8 @@ public class RedisResultVo implements Serializable {
     private String valueStr;
     private int start;
     private int end;
+    private int cursor;
+    private int count;
     private Map<String,String> map=new HashMap<String, String>();
     private int wasteTime;
 
@@ -56,6 +58,10 @@ public class RedisResultVo implements Serializable {
     }
     public void addValue(String field,String value){
         map.put(field,value);
+    }
+
+    public int size(){
+        return map.size();
     }
 
 }
